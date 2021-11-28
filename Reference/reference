@@ -1,0 +1,139 @@
+# Docker
+
+## Images
+
+- https://hub.docker.com/u/vis2022
+vis2022/sample/limits-service:0.0.3-SNAPSHOT
+vis2022/sample/spring-config-server:0.0.4-SNAPSHOT
+vis2022/sample/currency-exchange-service:0.0.2-SNAPSHOT
+vis2022/sample/currency-conversion-service:0.0.2-SNAPSHOT
+vis2022/sample/api-gateway:0.0.2-SNAPSHOT
+vis2022/sample/naming-server:0.0.2-SNAPSHOT
+
+
+## URLS
+
+#### Currency Exchange Service
+- http://localhost:8000/currency-exchange/from/USD/to/INR
+
+#### Currency Conversion Service
+- http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+
+#### Eureka
+- http://localhost:8761/
+
+#### Zipkin
+- http://localhost:9411/
+
+#### API GATEWAY
+- http://localhost:8765/currency-exchange/from/USD/to/INR
+- http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+
+- http://localhost:8765/sainsburry-c4-stage1-currency-exchange/from/USD/to/INR
+- http://localhost:8765/sainsburry-c4-stage1-currency-conversion/from/USD/to/INR/quantity/10
+
+
+
+#### Commands
+#ensure docker is up.
+changes-> maven-build-> docker
+
+cd C:\Users\cex\eclipse-workspace\Reference  && docker-compose up  --remove-orphan
+
+--docker run -p 8888:8888 vis2022/sample/spring-config-server:0.0.4-SNAPSHOT
+--docker run -p 8080:8080 vis2022/sample/limits-service:0.0.3-SNAPSHOT
+
+docker ps -a
+#docker stop e3304c1b20a8 c0afd0b31569  d7cb5c4b8379
+
+docker login -u vis2022
+d671c88c-fc87-4533-9fa2-673a6ba80d22
+
+docker login -u vis2022 -p   docker.io
+
+docker push vis2022/sample/limits-service:0.0.3-SNAPSHOT
+docker push vis2022/sample/spring-config-server:0.0.4-SNAPSHOT
+docker push vis2022/sample/currency-exchange-service:0.0.2-SNAPSHOT
+docker push vis2022/sample/currency-conversion-service:0.0.2-SNAPSHOT
+docker push vis2022/sample/api-gateway:0.0.2-SNAPSHOT
+docker push vis2022/sample/naming-server:0.0.2-SNAPSHOT
+
+
+
+
+
+
+
+
+
+
+
+start.spring.io
+
+eureka.client.enabled=false
+
+logging.level.org.springframework.* = debug
+
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.jpa.show-sql=true
+spring.h2.console.enabled=true
+spring.jpa.defer-datasource-initialization=true
+
+
+	1. User
+	2. UserService
+	3. UserController
+	4. Exception Handling
+	5. Validation
+	6. HATEOAS
+	7. I18n via message.properties
+	8. XML <-> JSON   => jackson-dataformat  
+	9. Swagger
+	10. Actuator		
+	11. HAL Explorer
+	12. Filtering -  Dynamic , Static using @JsonIgnore.
+	13. version - URI , PARAM , HEADER, PRODUCERS, 
+	14. Security - Basic.
+	15. JPA   - enable h2 console, and show queries, and add annotations like  @Entity @ table, @column... 
+			  - Check this in log :  create table user (id integer not null, date_of_birth timestamp not null, name varchar(10) not null, primary key (id))
+			  -	Create a .sql with insert queries
+			  - localhost/h2-console	
+	15.	- ensure child table don't have parent field in toString().
+		- ensure parent table don't have child fields constructors.
+	 		  
+	16. Richardson's Maturity Model RESTFUL WebService.
+		- Level 0 :  Expose SOAP in REST Style => getUser, deleteUser, updateUser 
+		- Level 1 :  Expose Resources with proper URI 
+		- Level 2 :  In addition, Proper usage of methods.
+		- Level 3 :  In addition, HATEAOS. Return additional information like next possible actions. 
+
+
+Jackson-dataFormat-xml helps for content to be displayed in XML formart.
+<!--  
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		-->
+		
+			<!-- Open API using Swagger -->
+		 <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.5.12</version>
+   </dependency>
+	
+
+#Version Factors
+
+1. URL Pollution            :   URI (twitter)  , Request PARAMATER (Amazon) 
+2. Misuse of HTTP header    :   PRODUCER (Git) , HEADER (Microsoft)
+3. Caching                  :   Can't cache due to  Misuse of HTTP header   
+4. end-user friendly        :   not easy due to Misuse of HTTP header  . Normal user can work with URL/Request parameter is relatively easy.
+5.. Doc version             :   DOC with URL/Request parameter is relatively easy.
+
+
+management.endpoints.web.exposure.include=*
+management.endpoints.web.exposure.exclude=loggers
+
+
