@@ -1,0 +1,4 @@
+Enviornment, microservice-details.currencyExchange, microservice-details.currencyConversion, microservice-details.eureka, microservice-details.apiCurrencyExchange, microservice-details.apiCurrencyConversion
+default,default files,http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10,http://localhost:8761/,http://localhost:8765/currency-exchange/from/USD/to/INR,http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+dev,files in local, , http://localhost:8761/,http://localhost:8765/currency-exchange/from/USD/to/INR,http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+qa,http://localhost:8000/currency-exchange/from/USD/to/INR,http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10,http://localhost:8761/,http://localhost:8765/currency-exchange/from/USD/to/INR,http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
